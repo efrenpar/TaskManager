@@ -1,11 +1,14 @@
-import React from 'react';
+import React, {useState} from 'react';
 import Task from './Task';
 
-const MyTaskPanel = () => {
+
+const MyTaskPanel = ({tasks,moveTask,begunTasks}) => {
+
     return (  
-        <div className="row row-content">
+    <div className="row row-content">
         <div className="col-12 col-sm-12">
             <div id="accordion">
+                
                 <div className="card accordion">
                     <div className="card-header" role="tab" id="nuevashead">
                         <h6 className="mb-0 ">
@@ -16,9 +19,16 @@ const MyTaskPanel = () => {
                     </div>
                     <div role="tabpanel" className="collapse show" id="nuevas" data-parent="#accordion">
                         <div className="card-body">
-                        <Task/> 
-                        <Task/> 
-                        <Task/>  
+                            {tasks.map(task=>(
+                                <Task
+                                    key={task.id}
+                                    task={task}
+                                    estado="nueva"
+                                    moveTask={moveTask}
+                                />
+                            ))
+
+                            }
                         </div>
                     </div> 
                 </div>
@@ -33,7 +43,15 @@ const MyTaskPanel = () => {
                     </div>
                     <div role="tabpanel" className="collapse" id="danny" data-parent="#accordion">
                         <div className="card-body">
-                            <Task/> 
+                            {begunTasks.map(task=>(
+                                <Task
+                                    key={task.id}
+                                    task={task}
+                                    estado="progreso"
+                                />
+                            ))
+
+                            }
                         </div>
                     </div>
                 </div>
@@ -47,7 +65,7 @@ const MyTaskPanel = () => {
                     </div>
                     <div role="tabpanel" className="collapse" id="agumbe" data-parent="#accordion">
                         <div className="card-body">
-                            <Task/> 
+                            
                         </div>
                     </div> 
                 </div>
