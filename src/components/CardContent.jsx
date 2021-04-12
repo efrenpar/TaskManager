@@ -1,16 +1,12 @@
-import React, {useState,useEffect} from 'react';
+import React, {useState} from 'react';
 import CreateTask from './CreateTask';
 import MyTaskPanel from './MyTaskPanel';
-import uuid, { v4 as uuidv4 } from 'uuid';
 
 
 function CardContent(){
 
     //tasks arrays
     const [tasks, saveTasks] = useState([]);
-
-    //tasks in progress
-    const [begunTasks,saveBegunTasks] = useState([]);
 
 
     const createTask= task =>{
@@ -23,15 +19,8 @@ function CardContent(){
     const moveTask = id =>{
         
         const newTasks = tasks.filter(task => task.id !== id);
-        const progressTasks = tasks.filter(task => task.id == id);
         saveTasks(newTasks);
 
-        progressTasks.id= uuidv4();
-        console.log(progressTasks);
-        saveBegunTasks([
-            ...begunTasks,
-            progressTasks
-        ]);
     }
 
     return (
@@ -45,7 +34,6 @@ function CardContent(){
             <div className="tab-pane fade" id="revisarTarea" role="tabpanel" aria-labelledby="revisarTab">
                 <MyTaskPanel
                     tasks={tasks}
-                    begunTasks={begunTasks}
                     moveTask={moveTask}
                 /></div>
             </div>

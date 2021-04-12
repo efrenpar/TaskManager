@@ -15,12 +15,7 @@ const Task = ({task,estado,moveTask}) => {
         badge="badge badge-danger"
     }
 
-    if(estado === "nueva"){
-        button="Comenzar"
-    }else if(estado === "progreso") {
-        button="Finalizar"
-    }
-
+ 
 
 
 
@@ -38,9 +33,9 @@ const Task = ({task,estado,moveTask}) => {
                     ?
                     <p>completado</p>
                     :
-                    <button className="btn btn-outline-primary"
+                    <button className="btn btn-outline-danger"
                         onClick={()=>moveTask(task.id)}>
-                        {button}
+                        Eliminar
                     </button>
 
                 }
